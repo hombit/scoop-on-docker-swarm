@@ -113,6 +113,7 @@ We need secret ssh keys to connect broker with workers. Generate pairs of ssh
 keys for `SCOOP` broker (ssh client) and workers (ssh hosts):
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+mkdir secrets
 yes | ssh-keygen -f secrets/ssh_client_rsa_key -N '' -C '' -t rsa
 yes | ssh-keygen -f secrets/ssh_host_rsa_key -N '' -C '' -t rsa
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
