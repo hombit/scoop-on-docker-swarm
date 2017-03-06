@@ -4,8 +4,6 @@ Docker swarm for Python SCOOP
 The project shows how to run [SCOOP](http://scoop.readthedocs.io/) program with
 [Docker swarm mode](https://docs.docker.com/engine/swarm/)
 
- 
-
 Architecture of the project
 ---------------------------
 
@@ -41,8 +39,6 @@ Install Docker onto your computer using instructions on
 [docker.com](http://docker.com). Remember that you need all staff: Docker
 Engine, Docker Machine and Docker Compose. Modern installation packages for
 Windows and Mac include all of them.
-
- 
 
 You need ssh access to each of your hosts without password. Generate pair of
 private and public ssh keys if you haven’t them yet (keep the default location):
@@ -110,8 +106,6 @@ Return to the leader and check your swarm:
 docker node ls
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
- 
-
 Generate ssh keys
 -----------------
 
@@ -123,10 +117,17 @@ yes | ssh-keygen -f secrets/ssh_client_rsa_key -N '' -C '' -t rsa
 yes | ssh-keygen -f secrets/ssh_host_rsa_key -N '' -C '' -t rsa
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
- 
+Build Docker services
+---------------------
 
-Deploy Docker services
-----------------------
+On each host do:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+docker-compose build
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Deploy services
+---------------
 
 Do on manager host:
 
@@ -148,3 +149,16 @@ Check
 -----
 
 Go to http://YOUR_MANAGER_ADDRESS:8000 and check that it responds.
+
+Limitations and what to do next
+-------------------------------
+
+I haven’t found a way to specify a number of `SCOOP` workers to run in one
+container. Now I start one docker container on each host and run there one
+`SCOOP` worker.
+
+`docker-compose.yml` can be split into three parts: for building images, for
+running on one host for debug purposes and for Docker swarm mode.
+
+It is bad idea to build images on each host. It is much better to use [Docker
+registry](https://docs.docker.com/registry/) for building and storing images.
