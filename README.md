@@ -9,11 +9,11 @@ Architecture of the project
 
 The project has only one Docker Swarm manager host and numerical Docker Swarm
 worker hosts. Docker Swarm manager host runs two containers: `SCOOP` broker and
-`SCOOP` root worker. Each Docker Swarm worker hosts run one `SCOOP` worker
+`SCOOP` root worker. Each of Docker Swarm worker hosts runs one `SCOOP` worker
 container. `SCOOP` broker connects to each worker (including root worker) and
 asks them to perform calculations. Root worker does one more thing: it runs
-simple web-server (based on [bottle](http://bottlepy.org)) on port 8000 and show
-the result of computation there.
+simple web-server (based on [bottle](http://bottlepy.org)) on port 8000 and
+shows the result of computation there.
 
 ### Diagrams
 
@@ -31,7 +31,7 @@ Install Docker
 --------------
 
 You can install docker to each future docker swarm host manually or using
-docker-machine
+`docker-machine`.
 
 ### Docker-machine way (preferred)
 
@@ -53,6 +53,10 @@ you should replace.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ssh-copy-id USER@HOST_NAME
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Be sure that you can execute sudo commands on each host without password. If you
+cannot then run `visudo` and add line `USER ALL=(ALL)NOPASSWD:ALL` (replace
+`USER` with your username).
 
 Than install Docker on each host using `docker-machine` (in the terms of Docker
 create Docker machine):
@@ -79,7 +83,8 @@ Now do what you need, you don’t need to ssh to your host.
 
 Ssh to each your host and install Docker manually. Use instructions from
 [docker.com](http://docker.com). When you need to perform some `docker` or
-`docker-compose` command on the host, you should ssh to it.
+`docker-compose` command on the host, you should ssh to it. Don’t forget to add
+your user to `docker` group or use `sudo` for every Docker command.
 
 Create swarm
 ------------
