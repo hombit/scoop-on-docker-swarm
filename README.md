@@ -127,13 +127,13 @@ On each host do:
 docker-compose build
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Deploy services
----------------
+Deploy stack of services
+------------------------
 
 Do on manager host:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# In the future will be replaced with docker deploy
+# In the future versions of Docker command will be replaced with docker deploy
 docker stack deploy --compose-file=docker-compose.yml scoop
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
