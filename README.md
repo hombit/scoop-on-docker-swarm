@@ -159,10 +159,6 @@ Go to http://YOUR_MANAGER_ADDRESS:8000 and check that it responds.
 Limitations and what to do next
 -------------------------------
 
-I haven’t found a way to specify a number of `SCOOP` workers to run in one
-container. Now I start one docker container on each host and run there one
-`SCOOP` worker.
-
 `docker-compose.yml` can be split into three parts: for building images, for
 running on one host for debug purposes and for Docker swarm mode.
 
